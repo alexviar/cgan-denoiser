@@ -28,7 +28,7 @@ def add_noise(data):
         # draw some random points
         for i in range(10,random.randrange(11, 20)):
             draw.point((getit(), getit(), getit(), getit(), getit(), getit(), getit(), getit(), getit(), getit()), fill=random.randrange(220,255))
-        noisy.append(pilimg)
+        noisy.append(np.array(pilimg))
     return np.array(noisy)
 
 def add_gaussian_noise(data, stdev=0.1, mean=0.0, data_range=(0, 1), clip=True):
