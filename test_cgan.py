@@ -196,7 +196,7 @@ def prepare_data(data_dir):
 
     return (X_train, Y_train), (X_test, Y_test)
 
-if if __name__ == '__main__':        
+if __name__ == '__main__':        
     # model_path = "out/noise_gan/model/2018-12-12-11-07-49"
     parser = argparse.ArgumentParser(description='emnist experiment')
     parser.add_argument('--epochs', '-e', type=int, default=20)
