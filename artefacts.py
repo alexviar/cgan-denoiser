@@ -8,8 +8,28 @@ author: Ben Cottier (git: bencottier)
 """
 from __future__ import absolute_import, division, print_function
 from data_processing import normalise
+from PIL import Image, ImageDraw
 import numpy as np
+import random
 
+getit = lambda : (random.randrange(0, 27),random.randrange(0, 27))
+
+def add_noise(data):
+    noisy = []
+    for img in data:
+        #img = img.transpose()
+        #        img = img + random.random()*0.33*np.random.normal(0, 255, img.shape)
+        pilimg = Image.fromarray(img)
+        draw = ImageDraw.Draw(pilimg)
+        # draw some random lines
+        for i in range(5,random.randrange(6, 8)):
+            draw.line((getit(), getit()), fill=255, width=random.randrange(1,3))
+
+        # draw some random points
+        for i in range(10,random.randrange(11, 20)):
+            draw.point((getit(), getit(), getit(), getit(), getit(), getit(), getit(), getit(), getit(), getit()), fill=random.randrange(220,255))
+        noisy.append(img)
+    return np.array(noisy)
 
 def add_gaussian_noise(data, stdev=0.1, mean=0.0, data_range=(0, 1), clip=True):
     """
@@ -44,14 +64,17 @@ if __name__ == "__main__":
     # data = ascent()
     data = train_images
     print("Data shape: ", data.shape)
-    data = add_gaussian_noise(normalise(data, (-1, 1), (0, 255)), 0.2)
+    #data = add_gaussian_noise(normalise(data, (-1, 1), (0, 255)), 0.2)
+    data = add_gaussian_noise(data, 0.2)
+    data2 = add_noise(data)
     # plt.imshow(data[0], cmap='gray')
 
-    fig = plt.figure(figsize=(4,4))
+    fig = plt.figure(figsize=(8,4))
 
-    for i in range(16):
-        plt.subplot(4, 4, i+1)
+    for i in range(32):
+        plt.subplot(8, 4, i+1)
         plt.imshow(data[i, :, :], cmap='gray')
+        plt.imshow(data2[i, :, :], cmap='gray')
         plt.axis('off')
 
     plt.show()
