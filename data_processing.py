@@ -72,11 +72,11 @@ def padding_power_2(shape):
 
 
 def mse(x1, x2, norm=2):
-    return tf.reduce_mean(tf.square((x1 - x2) / norm))
+    return tf.math.reduce_mean(tf.math.square((x1 - x2) / norm))
 
 
 def rmse(x1, x2, norm=2):
-    return tf.sqrt(mse(x1, x2, norm))
+    return tf.math.sqrt(mse(x1, x2, norm))
 
 
 def psnr(x1, x2, max_diff=1):
