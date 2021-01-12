@@ -80,4 +80,4 @@ def rmse(x1, x2, norm=2):
 
 
 def psnr(x1, x2, max_diff=1):
-    return 20. #* tf.math.log(max_diff / rmse(x1, x2)) / tf.math.log(10.)
+    return 20. * tf.math.log(max_diff / rmse(x1, x2)) / tf.math.log(10.)
