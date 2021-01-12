@@ -27,7 +27,7 @@ def add_noise(data):
 
         # draw some random points
         for i in range(10,random.randrange(11, 20)):
-            draw.point((getit(), getit(), getit(), getit(), getit(), getit(), getit(), getit(), getit(), getit()), fill=random.randrange(220,255))
+            draw.point((getit(), getit(), getit(), getit(), getit(), getit(), getit(), getit(), getit(), getit()), fill=255)
         noisy.append(np.array(pilimg))
     return np.array(noisy)
 
