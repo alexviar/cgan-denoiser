@@ -14,7 +14,6 @@ import cgan as model
 import utils
 import tensorflow as tf
 #tf.enable_eager_execution()
-import matplotlib.pyplot as plt
 import numpy as np
 import os
 import PIL
@@ -87,10 +86,10 @@ def train(dataset, epochs):
         for x, y in dataset:
             train_step(x, y)
 
-        generate_and_save_images(generator,
-                                 epoch + 1,
-                                 selected_inputs,
-                                 selected_labels)
+        #generate_and_save_images(generator,
+        #                         epoch + 1,
+        #                         selected_inputs,
+        #                         selected_labels)
         
         # saving (checkpoint) the model every few epochs
         if (epoch + 1) % config.save_per_epoch == 0:
@@ -99,12 +98,12 @@ def train(dataset, epochs):
         print ('Time taken for epoch {} is {} sec'.format(epoch + 1,
                                                           time.time()-start))
     # generating after the final epoch
-    generate_and_save_images(generator,
-                             epochs,
-                             selected_inputs,
-                             selected_labels)
+    #generate_and_save_images(generator,
+    #                         epochs,
+    #                         selected_inputs,
+    #                         selected_labels)
 
-
+"""
 def generate_and_save_images(model, epoch, test_inputs, test_labels):
     print("Saving images")
     if model is None:
@@ -143,7 +142,7 @@ def generate_and_save_images(model, epoch, test_inputs, test_labels):
     
     plt.savefig(os.path.join(results_path, 'image_at_epoch_{:04d}.png'.format(epoch)))
     # plt.show()
-
+"""
 
 def log_metric(value, name):
     with summary_writer.as_default():
@@ -290,7 +289,7 @@ if __name__ == '__main__':
                                     generator=generator,
                                     discriminator=discriminator)
     #print(train_images[0])
-    generate_and_save_images(None, 0, selected_inputs, selected_labels)  # baseline
+    #generate_and_save_images(None, 0, selected_inputs, selected_labels)  # baseline
     print("\nTraining...\n")
     # Compile training function into a callable TensorFlow graph (speeds up execution)
     #train_step = tf.contrib.eager.defun(train_step)
