@@ -23,11 +23,11 @@ def add_noise(data):
         draw = ImageDraw.Draw(pilimg)
         # draw some random lines
         for i in range(5,random.randrange(6, 8)):
-            draw.line((getit(), getit()), fill=255, width=random.randrange(1,3))
+            draw.line((getit(), getit()), fill=random.choice([0,255]), width=random.randrange(1,3))
 
         # draw some random points
         for i in range(10,random.randrange(11, 20)):
-            draw.point((getit(), getit(), getit(), getit(), getit(), getit(), getit(), getit(), getit(), getit()), fill=255)
+            draw.point((getit(), getit(), getit(), getit(), getit(), getit(), getit(), getit(), getit(), getit()), fill=random.choice([0,255]))
         noisy.append(np.array(pilimg))
     return np.array(noisy)
 
